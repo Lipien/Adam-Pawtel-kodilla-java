@@ -1,8 +1,6 @@
 package com.kodilla.testing.forum.statistics;
 
 import org.junit.*;
-
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
