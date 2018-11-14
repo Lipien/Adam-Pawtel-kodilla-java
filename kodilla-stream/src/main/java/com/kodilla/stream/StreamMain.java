@@ -21,13 +21,13 @@ public class StreamMain {
         poemBeautifier.beautify("Text Text Text", text -> text.toLowerCase());
         poemBeautifier.beautify("Text Text text", (text -> "***" + text + "***"));
         poemBeautifier.beautify("TEXT IN CAGES", (text -> {
-            StringBuilder textStringBuit = new StringBuilder();
-            textStringBuit.append("|");
+            StringBuilder textStringBuilt = new StringBuilder();
+            textStringBuilt.append("|");
             for (int i = 0; i < text.length(); i++) {
-                textStringBuit.append(text.charAt(i));
-                textStringBuit.append("|");
+                textStringBuilt.append(text.charAt(i));
+                textStringBuilt.append("|");
             }
-            return textStringBuit.toString();
+            return textStringBuilt.toString();
 
         }));
     }
