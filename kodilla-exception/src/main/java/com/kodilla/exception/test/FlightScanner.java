@@ -17,9 +17,10 @@ public class FlightScanner {
         return airportsEurope;
     }
 
-    public Flight findFlight(Flight flight) throws RouteNotFoundException {
-        if (airportsEurope().containsKey(airportsEurope())) {
-            return flight;
+    public Boolean findFlight(Flight flight) throws RouteNotFoundException {
+        String city = flight.getArrivalAirport();
+        if (airportsEurope().containsKey(city)) {
+            return airportsEurope().get(city);
         } else throw new RouteNotFoundException("Flight not available: try another search.");
 
     }
