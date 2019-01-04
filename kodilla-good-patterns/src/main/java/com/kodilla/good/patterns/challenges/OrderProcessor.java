@@ -29,7 +29,6 @@ public class OrderProcessor {
             return new OrdersDTO(customerProductOrder.getCustomer(), true);
         } else {
             return new OrdersDTO(customerProductOrder.getCustomer(), false);
-
         }
     }
 }
