@@ -1,4 +1,4 @@
-package com.kodilla.good.patterns.challenges;
+package com.kodilla.good.patterns.challenges.orders;
 
 public class OrderProcessor {
     private InformationService informationService;
@@ -19,6 +19,7 @@ public class OrderProcessor {
                 customerProductOrder.getProduct(),
                 customerProductOrder.getProductQty());
         System.out.println("Is order accepted: " + isInvoiced);
+
         if (isInvoiced) {
             informationService.informCustomer(customerProductOrder);
             productOrdersRepository.createProductOrder(customerProductOrder.getCustomer(),
