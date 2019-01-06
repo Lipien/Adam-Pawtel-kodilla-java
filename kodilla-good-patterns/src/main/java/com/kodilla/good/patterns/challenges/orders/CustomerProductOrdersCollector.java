@@ -9,7 +9,7 @@ public class CustomerProductOrdersCollector {
         String orderNumber = "000230/04/01/2019TB";
         Customer customer = new Customer("Jan", "Kowalski", "10-610", "Warszawa", "Ludowa 1");
         Product product = new Toothbrush("C1234BA", "Electric Toothbrush by COLGATE", 99.99);
-        int productQty = 2;
+        int productQty = 200;
 
         System.out.println("New order to be processed:" + orderNumber);
 
