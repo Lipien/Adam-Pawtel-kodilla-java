@@ -15,7 +15,7 @@ import java.util.List;
 public class TaskListDaoTestSuite {
     @Autowired
     private TaskListDao taskListDao;
-    private static final String LISTNAME = "Test: task list";
+    private static final String LISTNAME = "Test: tasks list";
 
     @Test
     public void testFindByListName() {

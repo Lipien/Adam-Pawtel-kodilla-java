@@ -33,11 +33,11 @@ public class TaskList {
     }
 
     @Column(name = "DESCRIPTION")
-    private String getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public TaskList setId(int id) {
+    private TaskList setId(int id) {
         this.id = id;
         return this;
     }
