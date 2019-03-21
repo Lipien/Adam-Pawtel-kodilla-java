@@ -5,12 +5,20 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@NamedNativeQuery(
-        name = "Company.retrieveCompanyByPartOfName",
-        query = "SELECT * FROM COMPANIES " +
-                "WHERE LEFT(company_name, 3) = :BEGINWITH",
-        resultClass = Company.class
-)
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "Company.retrieveCompanyByPartOfName",
+                query = " SELECT * FROM COMPANIES " +
+                        " WHERE LEFT(company_name, 3) = :BEGINWITH",
+                resultClass = Company.class
+        ),
+        @NamedNativeQuery(
+                name = "Company.retrieveCompanyByAnyPartOfName",
+                query = " SELECT * FROM COMPANIES " +
+                        " WHERE COMPANY_NAME LIKE CONCAT ('%', :LETTERS, '%') ",
+                resultClass = Company.class
+        )
+})
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
