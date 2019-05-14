@@ -26,7 +26,6 @@ public class CrudAppTestSuite {
 
     @After
     public void cleanUpAfterTests() {
-        driver.switchTo().alert().accept();
         driver.close();
     }
 
@@ -45,9 +44,29 @@ public class CrudAppTestSuite {
 
         WebElement addButton = driver.findElement(By.xpath(XPATH_ADD_BUTTON));
         addButton.click();
+
         Thread.sleep(2000);
 
         return taskName;
+    }
+
+    public void closeAlert(String taskName) {
+        driver.switchTo().alert().accept();
+    }
+
+    public void deleteTaskFromCrudApp(String taskName) throws InterruptedException {
+        final String XPATH_FORMS = "//form[@class= \"datatable__row\"]";
+        final String XPATH_VALUE_TASK = ".//p[@class= \"datatable__field-value\"]";
+        final String XPATH_DELETE = ".//div[@class= \"datatable__row-section-wrapper\"]//button[4]";
+
+        driver.findElements(By.xpath(XPATH_FORMS)).stream()
+                .filter(taskValue -> taskValue.findElement(By.xpath(XPATH_VALUE_TASK)).getText().equals(taskName))
+                .forEach(deleteTask -> {
+                    WebElement buttonDelete = deleteTask.findElement(By.xpath(XPATH_DELETE));
+                    buttonDelete.click();
+                });
+
+        Thread.sleep(2000);
     }
 
     private void sendTestTaskToTrello(String taskName) throws InterruptedException {
@@ -69,9 +88,8 @@ public class CrudAppTestSuite {
                     buttonCreateCard.click();
                 });
 
-        Thread.sleep(5000);
+        Thread.sleep(2000);
     }
-
 
     private boolean checkTaskExistsInTrello(String taskName) throws InterruptedException {
         final String TRELLO_URL = "https://trello.com/login";
@@ -84,13 +102,13 @@ public class CrudAppTestSuite {
         driverTrello.findElement(By.id("password")).sendKeys("@barbapapa#");
         driverTrello.findElement(By.id("login")).submit();
 
-        Thread.sleep(5000);
+        Thread.sleep(2000);
 
         driverTrello.findElements(By.xpath("//a[@class=\"board-tile\"]")).stream()
                 .filter(aHref -> aHref.findElements(By.xpath(".//div[@title=\"Jak używać Trello na Android\"]")).size() > 0)
                 .forEach(aHref -> aHref.click());
 
-        Thread.sleep(5000);
+        Thread.sleep(2000);
 
         result = driverTrello.findElements(By.xpath("//span")).stream()
                 .filter(theSpan -> theSpan.getText().contains(taskName))
@@ -107,5 +125,7 @@ public class CrudAppTestSuite {
         String taskName = createCrudAppTestTask();
         sendTestTaskToTrello(taskName);
         assertTrue(checkTaskExistsInTrello(taskName));
+        closeAlert(taskName);
+        deleteTaskFromCrudApp(taskName);
     }
 }
