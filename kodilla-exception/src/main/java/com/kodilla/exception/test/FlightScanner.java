@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class FlightScanner {
 
-    private Map<String, Boolean> airportsEurope() {
-        final Map<String, Boolean> airportsEurope = new HashMap<>();
+    private Map <String, Boolean> airportsEurope() {
+        final Map <String, Boolean> airportsEurope = new HashMap <>();
         airportsEurope.put("Warsaw", true);
         airportsEurope.put("London", true);
         airportsEurope.put("Barcelona", false);
@@ -22,7 +22,5 @@ public class FlightScanner {
         if (airportsEurope().containsKey(city)) {
             return airportsEurope().get(city);
         } else throw new RouteNotFoundException("Flight not available: try another search.");
-
     }
-
 }

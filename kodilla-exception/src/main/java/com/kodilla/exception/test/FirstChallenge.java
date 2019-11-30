@@ -24,9 +24,6 @@ public class FirstChallenge {
             System.out.println("Exception occurred; " + e);
         } finally {
             System.out.println("Calculators can stand everything...");
-
         }
-
-
     }
 }
